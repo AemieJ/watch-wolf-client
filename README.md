@@ -93,7 +93,7 @@ The server side instructions are provided within the folder `api`.
 ![Tweet Entities Report](./image/tweet/hindi/tweet_hi_entities.png)
 
 # Authors 
-We, the team Twelfth Hour are the author of LIT. Follow us if you find us interesting 💻😄 as we are two big time computer geeks. 
+We, the team Twelfth Hour are the authors of Watch Wolf. Follow us if you find us interesting 💻😄 as we are two big time computer geeks. 
 
 ## Aemie Jariwala
 📌 `Github`: https://github.com/AemieJ <br/>
