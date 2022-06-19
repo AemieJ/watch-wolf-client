@@ -20,11 +20,17 @@ export default function Images(props) {
         }
     }, [])
 
-    return isAuth ? (
+    return <>
+    <Head>
+        <title>Watch Wolf: Image Report</title>
+        <meta name="description" content="Watch wolf helps to understand sentiment of text, pdf, images and tweets" />
+        <link rel="icon" href="/favicon.ico" />
+    </Head>
+    {isAuth ? (
          <ImageCard locale={locale} />
     ) : (
         <LoginCard locale={locale} service="pdf" />
-    );
+    )}</>;
 }
 
 export async function getStaticProps(context) {

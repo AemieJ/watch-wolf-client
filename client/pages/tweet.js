@@ -20,11 +20,17 @@ export default function Text(props) {
         }
     }, [])
 
-    return isAuth ? (
+    return <>
+    <Head>
+        <title>Watch Wolf: Tweet Report</title>
+        <meta name="description" content="Watch wolf helps to understand sentiment of text, pdf, images and tweets" />
+        <link rel="icon" href="/favicon.ico" />
+    </Head>
+    {isAuth ? (
          <TweetCard locale={locale} />
     ) : (
         <LoginCard locale={locale} service="text" />
-    );
+    )} </>;
 }
 
 export async function getStaticProps(context) {

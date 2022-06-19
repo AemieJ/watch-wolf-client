@@ -72,3 +72,13 @@
     color: #083a61 !important;
     font-size: 1.25rem !important;
 }
+
+@media (max-width: 825px) {
+  .row {
+    flex-direction: column;
+  }
+
+  .img {
+    display: none;
+  }
+}

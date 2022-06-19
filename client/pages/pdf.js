@@ -20,11 +20,18 @@ export default function PDF(props) {
         }
     }, [])
 
-    return isAuth ? (
+    return <>
+    <Head>
+        <title>Watch Wolf: PDF Report</title>
+        <meta name="description" content="Watch wolf helps to understand sentiment of text, pdf, images and tweets" />
+        <link rel="icon" href="/favicon.ico" />
+    </Head>
+    {isAuth ? (
          <PDFCard locale={locale} />
     ) : (
-        <LoginCard locale={locale} service="pdf" />
-    );
+        <LoginCard locale={locale} service="pdf" />)
+    }
+    </>;
 }
 
 export async function getStaticProps(context) {
