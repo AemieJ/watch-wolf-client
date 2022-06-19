@@ -41,7 +41,7 @@ export default function Home(props) {
 
         <h1 className={styles.title}>
         {
-          locale === "hi-HI" ? "वुल्फ देखें 🐺" : "Watch Wolf 🐺"
+          locale === "hi-HI" ? "वॉच वुल्फ 🐺" : "Watch Wolf 🐺"
         }
         </h1>
 

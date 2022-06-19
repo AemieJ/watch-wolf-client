@@ -106,7 +106,7 @@ export default function ServiceCard({ locale }) {
             <main className={styles.main}>
                 <h1 className={styles.title}>
                     {
-                        locale === "hi-HI" ? "वुल्फ देखें 🐺: पाठ रिपोर्ट" : "Watch Wolf 🐺: Text Report"
+                        locale === "hi-HI" ? "वॉच वुल्फ 🐺: पाठ रिपोर्ट" : "Watch Wolf 🐺: Text Report"
                     }
                 </h1>
 

@@ -66,7 +66,7 @@ export default function LoginCard({ locale, service }) {
             <main className={styles.main}>
                 <h1 className={styles.title}>
                     {
-                        locale === "hi-HI" ? "वुल्फ देखें 🐺: लॉग इन करें" : "Watch Wolf 🐺: Login"
+                        locale === "hi-HI" ? "वॉच वुल्फ 🐺: लॉग इन करें" : "Watch Wolf 🐺: Login"
                     }
                 </h1>
 
