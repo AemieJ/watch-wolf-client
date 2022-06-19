@@ -89,6 +89,30 @@
   width: 60% !important;
 }
 
+.loader {
+  width: 500px;
+}
+
+.footer {
+  display: flex;
+  flex: 1;
+  padding: 2rem 0;
+  border-top: 1px solid #eaeaea;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer a,
+.footer a:hover,
+.footer a:focus,
+.footer a:active {
+  display: flex;
+  justify-content: center;
+  color: #000 !important;
+  align-items: center;
+  flex-grow: 1;
+}
+
 @media (max-width: 693px) {
   .submit {
     padding: 0.5rem 0.5rem !important;

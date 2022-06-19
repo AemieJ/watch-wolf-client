@@ -20,13 +20,13 @@ export default function ServiceCard({ locale }) {
 
     const uploadToClient = (event) => {
         if (event.target.files && event.target.files[0]) {
-          const i = event.target.files[0];
-    
-          setFile(i);
+            const i = event.target.files[0];
+
+            setFile(i);
         }
     };
 
-    const generateReport = async(e) => {
+    const generateReport = async (e) => {
         e.preventDefault()
 
         setClicked(true);
@@ -76,9 +76,9 @@ export default function ServiceCard({ locale }) {
 
         const res = await fetch(`${client}/api/logout`, {
             method: "GET"
-        }); 
+        });
 
-        const { data, err } = await res.json(); 
+        const { data, err } = await res.json();
         if (data !== null) {
             localStorage.setItem("auth", 0);
             localStorage.setItem("encode", "");
@@ -132,7 +132,7 @@ export default function ServiceCard({ locale }) {
                 </p>
                 <input type="file" className={"form-control"} id="customFile"
                     accept="image/gif, image/jpeg, image/png"
-                    onChange={uploadToClient}                    
+                    onChange={uploadToClient}
                     disabled={clicked}
                 />
                 <br />
@@ -157,11 +157,11 @@ export default function ServiceCard({ locale }) {
                         {locale === "hi-HI" ? "रिपोर्ट साफ़ करें" : "Clear Report"}
                     </Button>
                 </div>
-
                 {
-                    result.length === 0 ? (clicked ? <strong style={{ marginTop: "2rem", color: "#950002" }}
-                    >{ locale === "hi-HI" ? "इस ट्वीट के लिए रिपोर्ट तैयार नहीं की जा सकती या अभी तक लोड नहीं की गई है।" : 
-                    "Report for this tweet cannot be generated or hasn't been loaded yet."}</strong>: <></>
+                    result.length === 0 ? (clicked ?
+                        <div>
+                            <img src="/loader.gif" alt="loader" className={styles.loader}/>
+                        </div> : <></>
                     ) :
                         <>
                             <ReportImage locale={locale} result={result} />

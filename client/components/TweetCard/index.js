@@ -36,7 +36,8 @@ export default function ServiceCard({ locale }) {
             let tweetRegex = /http(?:s)?:\/\/(?:www\.)?twitter\.com\/([a-zA-Z0-9_]+)/g;
             let found = text.match(tweetRegex);
             if (found !== null) {
-                let list = text.split("/");
+                let removeQuery = text.split("?")[0]
+                let list = removeQuery.split("/");
                 let tweetID = list[list.length - 1];
                 
                 const res = await fetch(`${client}/api/generateTweet`, {
@@ -177,9 +178,9 @@ export default function ServiceCard({ locale }) {
                 </div>
 
                 {
-                    result.length === 0 ? (clicked ? <strong style={{ marginTop: "2rem", color: "#950002" }}
-                    >{locale === "hi-HI" ? "इस ट्वीट के लिए रिपोर्ट तैयार नहीं की जा सकती या अभी तक लोड नहीं की गई है।" : 
-                    "Report for this tweet cannot be generated or hasn't been loaded yet."}</strong>: 
+                    result.length === 0 ? (clicked ? <div>
+                        <img src="/loader.gif" alt="loader" className={styles.loader}/>
+                    </div>: 
                     <></>
                     ) :
                         <>

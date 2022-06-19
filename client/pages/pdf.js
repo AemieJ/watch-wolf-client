@@ -6,6 +6,7 @@ import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 import LoginCard from "../components/LoginCard"
 import PDFCard from "../components/PDFCard"
+import styles from "../components/PDFCard/Service.module.css"
 
 export default function PDF(props) {
     const { locale, locales, asPath } = useRouter()
@@ -31,6 +32,17 @@ export default function PDF(props) {
     ) : (
         <LoginCard locale={locale} service="pdf" />)
     }
+    <footer className={styles.footer}>
+        <a
+          href="https://github.com/Twelfth-Hour"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Created  with  ❣️  by  the &nbsp;
+          <b>Twelfth Hour</b>&nbsp;
+           team
+        </a>
+      </footer>
     </>;
 }
 

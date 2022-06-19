@@ -39,9 +39,13 @@
   align-items: center;
 }
 
-.footer a {
+.footer a,
+.footer a:hover,
+.footer a:focus,
+.footer a:active {
   display: flex;
   justify-content: center;
+  color: #000 !important;
   align-items: center;
   flex-grow: 1;
 }

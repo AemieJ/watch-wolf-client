@@ -70,14 +70,13 @@ export default function Home(props) {
 
       <footer className={styles.footer}>
         <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+          href="https://github.com/Twelfth-Hour"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
+          Created  with  ❣️  by  the &nbsp;
+          <b>Twelfth Hour</b>&nbsp;
+           team
         </a>
       </footer>
     </div>

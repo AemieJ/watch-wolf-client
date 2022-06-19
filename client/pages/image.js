@@ -6,6 +6,7 @@ import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 import LoginCard from "../components/LoginCard"
 import ImageCard from "../components/ImageCard"
+import styles from "../components/ImageCard/Service.module.css"
 
 export default function Images(props) {
     const { locale, locales, asPath } = useRouter()
@@ -30,7 +31,19 @@ export default function Images(props) {
          <ImageCard locale={locale} />
     ) : (
         <LoginCard locale={locale} service="pdf" />
-    )}</>;
+    )}
+    <footer className={styles.footer}>
+        <a
+          href="https://github.com/Twelfth-Hour"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Created  with  ❣️  by  the &nbsp;
+          <b>Twelfth Hour</b>&nbsp;
+           team
+        </a>
+      </footer>
+    </>;
 }
 
 export async function getStaticProps(context) {
