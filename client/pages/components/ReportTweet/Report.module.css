@@ -1,0 +1,86 @@
+.main {
+    margin-top: 2rem;
+}
+
+.title, .description {
+    text-align: center;
+}
+
+.reports {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 2rem;
+    margin-bottom: 5rem;
+}
+
+.report_circular {
+    margin-right: 1rem;
+}
+
+.report_text {
+    text-align: center;
+    color: #083a61;
+    margin-top: 0.75rem;
+    font-size: 1.15rem;
+}
+
+.entity_sec { 
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.card {
+    width: 18rem; 
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 10px !important;
+}
+
+.card_header {
+    background-color: #083a61 !important;
+    color: #fff !important;
+}
+
+.card_row {
+    display: flex;
+}
+
+.card_row .title {
+    font-size: 1.05rem;
+}
+
+.tweet_details {
+    border: 2px solid;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    margin-left: 6rem;
+    margin-right: 6rem;
+}
+
+.tweet_card {
+    justify-content: center;
+    flex-direction: row !important;
+    align-items: center;
+}
+
+.tweet_img {
+    width: 20%;
+}
+
+.tweet_card .btn,
+.tweet_card .btn:hover,
+.tweet_card .btn:active,
+.tweet_card .btn:focus {
+    background-color: #083a61;
+    padding: 0.5rem 5rem;
+}
+
+@media (max-width: 928px) {
+    .report_circular {
+        margin-bottom: 4rem;
+    }
+}

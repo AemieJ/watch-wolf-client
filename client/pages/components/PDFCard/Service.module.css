@@ -1,0 +1,96 @@
+.container {
+  padding: 0 2rem;
+}
+
+.main {
+  min-height: 100vh;
+  padding: 4rem 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.nav {
+  background-color: #fff !important;
+}
+
+.nav_link,
+.nav_link:hover,
+.nav_link:active,
+.nav_link:focus {
+  color: #083a61 !important;
+  font-size: 1.25rem !important;
+}
+
+.nav_btn {
+  background-color: #083a61 !important;
+  color: #fff !important;
+  border-radius: 10px;
+  padding: 0.25rem 3rem !important;
+}
+
+.nav_btn:hover,
+.nav_btn:active,
+.nav_btn:focus {
+  background-color: #fff !important;
+  border: 1px solid #083a61 !important;
+}
+
+.title a {
+  color: #0070f3;
+  text-decoration: none;
+}
+
+.title a:hover,
+.title a:focus,
+.title a:active {
+  text-decoration: underline;
+}
+
+.title {
+  margin: 0;
+  line-height: 1.15;
+  font-size: 4rem;
+}
+
+.title,
+.description {
+  text-align: center;
+}
+
+.description {
+  margin: 1rem 0 3rem 0;
+  line-height: 1.5;
+  font-size: 1.5rem;
+}
+
+.form_text {
+  width: 80vw;
+}
+
+.submit,
+.submit:hover,
+.submit:active,
+.submit:focus {
+  background-color: #083a61;
+  padding: 0.5rem 5rem;
+}
+
+.clear,
+.clear:hover,
+.clear:active,
+.clear:focus {
+  background-color: #950002;
+  margin-left: 1rem;
+}
+
+.main input {
+  width: 60% !important;
+}
+
+@media (max-width: 693px) {
+  .submit {
+    padding: 0.5rem 0.5rem !important;
+  }
+}

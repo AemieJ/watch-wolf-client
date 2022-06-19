@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "form-data": "^4.0.0",
+    "formidable": "^2.0.1",
+    "fs": "^0.0.1-security"
+  }
+}

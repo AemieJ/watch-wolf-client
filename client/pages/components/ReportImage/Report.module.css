@@ -1,0 +1,60 @@
+.main {
+    margin-top: 2rem;
+}
+
+.title, .description {
+    text-align: center;
+}
+
+.reports {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 2rem;
+    margin-bottom: 5rem;
+}
+
+.report_circular {
+    margin-right: 1rem;
+}
+
+.report_text {
+    text-align: center;
+    color: #083a61;
+    margin-top: 0.75rem;
+    font-size: 1.15rem;
+}
+
+.entity_sec { 
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.card {
+    width: 18rem; 
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 10px !important;
+}
+
+.card_header {
+    background-color: #083a61 !important;
+    color: #fff !important;
+}
+
+.card_row {
+    display: flex;
+}
+
+.card_row .title {
+    font-size: 1.05rem;
+}
+
+@media (max-width: 928px) {
+    .report_circular {
+        margin-bottom: 4rem;
+    }
+}
