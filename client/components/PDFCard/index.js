@@ -158,7 +158,10 @@ export default function ServiceCard({ locale }) {
                 </div>
 
                 {
-                    result.length === 0 ? <></> :
+                    result.length === 0 ? (clicked ? <strong style={{ marginTop: "2rem", color: "#950002" }}
+                    >{ locale === "hi-HI" ? "इस पीडीएफ के लिए रिपोर्ट तैयार नहीं की जा सकती है या अभी तक लोड नहीं की गई है।" : 
+                    "Report for this PDF cannot be generated or hasn't been loaded yet."}</strong>: <></>
+                    ) :
                         <>
                             <ReportPDF locale={locale} result={result} />
                         </>
