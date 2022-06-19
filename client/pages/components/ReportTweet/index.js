@@ -190,7 +190,7 @@ export default function ReportTweet({ locale, result }) {
             <div className={styles.entity_sec}>
                 {
                     lists.map(function (elm, idx) {
-                        return <Card className={styles.card}>
+                        return <Card className={styles.card} key={idx}>
                             <Card.Header className={styles.card_header}>Entity - {idx + 1}</Card.Header>
                             <Card.Body>
                                 <div className={styles.card_row}>

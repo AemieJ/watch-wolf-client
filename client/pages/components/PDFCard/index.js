@@ -10,24 +10,12 @@ import ReportPDF from '../ReportPDF'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { client } from '../../../config/client';
-import { server } from '../../../config/server'
 
 export default function ServiceCard({ locale }) {
     const home = locale === "hi-HI" ? `/hi-HI` : `/`;
     const [result, setResult] = useState("")
     const [clicked, setClicked] = useState(false)
     const [file, setFile] = useState(null)
-
-    const getBase64 = (file) => {
-        var reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = function () {
-            setFile(reader.result);
-        };
-        reader.onerror = function (error) {
-            console.log('Error: ', error);
-        };
-    }
     
     const uploadToClient = (event) => {
         if (event.target.files && event.target.files[0]) {
@@ -65,6 +53,7 @@ export default function ServiceCard({ locale }) {
             const { data, err } = await res.json()
             let result = "";
             if (err) {
+                setFile(null);
                 toast(err, {
                     closeOnClick: true,
                     autoClose: 10000
@@ -140,8 +129,8 @@ export default function ServiceCard({ locale }) {
                         }
                     </i>
                 </p>
-                <input type="file" class="form-control" id="customFile"
-                    type="file" accept="application/pdf"
+                <input type="file" className={"form-control"} id="customFile"
+                    accept="application/pdf"
                     onChange={uploadToClient}
                     disabled={clicked}
                 />

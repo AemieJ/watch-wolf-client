@@ -9,19 +9,31 @@ import ReportImage from '../ReportImage'
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { client } from '../../../config/client';
+
 
 export default function ServiceCard({ locale }) {
     const home = locale === "hi-HI" ? `/hi-HI` : `/`;
     const [result, setResult] = useState("")
     const [clicked, setClicked] = useState(false)
-    const [text, setText] = useState("")
+    const [file, setFile] = useState(null)
 
-    const generateReport = () => {
+    const uploadToClient = (event) => {
+        if (event.target.files && event.target.files[0]) {
+          const i = event.target.files[0];
+    
+          setFile(i);
+        }
+    };
+
+    const generateReport = async(e) => {
+        e.preventDefault()
+
         setClicked(true);
         // TODO: required to integrate with backend 
-        if (text.length === 0) {
+        if (file === null) {
             setClicked(false);
-            setText("")
+            setFile(null)
 
             let err = locale === "hi-HI" ? "कृपया एक छवि संलग्न करें। अटैचमेंट खाली नहीं हो सकता|" :
                 "Please attach an image. Attachment cannot be empty.";
@@ -31,32 +43,31 @@ export default function ServiceCard({ locale }) {
                     autoClose: 10000
                 });
         } else {
-            let result = "";
-            let jsonRes = {
-                "languageCode": "en",
-                "sentiment": {
-                    "positiveScore": 0.20946373045444489,
-                    "negativeScore": 6.742851692251861E-4,
-                    "neutralScore": 0.7898232340812683,
-                    "mixedScore": 3.8793106796219945E-5
-                },
-                "entities": [
-                    {
-                        "text": "Deutsche Bank of India",
-                        "type": "ORGANIZATION",
-                        "score": 0.9490169286727905
-                    },
-                    {
-                        "text": "summer of 2022",
-                        "type": "DATE",
-                        "score": 0.8828208446502686
-                    }
-                ]
-            }
+            let body = new FormData()
+            body.append("file", file);
+            console.log(file)
+            const res = await fetch(`${client}/api/generateImage`, {
+                method: "POST",
+                body
+            })
 
-            result = JSON.stringify(jsonRes);
-            console.log(result);
-            setResult(result);
+            const { data, err } = await res.json()
+            let result = "";
+            if (err) {
+                setFile(null);
+                toast(err, {
+                    closeOnClick: true,
+                    autoClose: 10000
+                });
+            } else {
+                let res1 = JSON.parse(data)
+                console.log(res1['status'])
+                if (res1['status'] === undefined) {
+                    console.log(res1)
+                    result = data;
+                    setResult(result);
+                }
+            }
         }
     }
 
@@ -119,9 +130,9 @@ export default function ServiceCard({ locale }) {
                         }
                     </i>
                 </p>
-                <input type="file" class="form-control" id="customFile"
-                    type="file" accept="image/gif, image/jpeg, image/png"
-                    onChange={(e) => setText(e.target.value)}
+                <input type="file" className={"form-control"} id="customFile"
+                    accept="image/gif, image/jpeg, image/png"
+                    onChange={uploadToClient}                    
                     disabled={clicked}
                 />
                 <br />
@@ -139,7 +150,7 @@ export default function ServiceCard({ locale }) {
                         onClick={() => {
                             setClicked(false);
                             setResult("");
-                            setText("");
+                            setFile(null);
                             document.querySelector("#customFile").value = null;
                         }}
                     >
