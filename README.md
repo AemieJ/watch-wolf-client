@@ -1,0 +1,108 @@
+# Watch Wolf (वॉच वुल्फ 🐺)
+
+> Track 4: Sentiment Analysis of social media posts
+<br/>
+> Website: https://watch-wolf.vercel.app/`
+
+# Problem Statement & Expectation
+
+People are only a click away from obtaining vast amounts of data. With information comes people's opinions, and with that comes people's positive and negative perspectives on a subject. This can lead to bullying and the spread of hateful remarks about someone or something. 
+
+The solution must be able to classify the sentiments that are expressed in the text source which is associated with that user on platforms such as Facebook, Instagram, and Twitter. It should accurately identify when the tone of the posts becomes inflammatory and hateful.
+
+# Solution
+Watch Wolf is the web platform that analyze the sentiment and provides the sentiment and entities report
+for the text, images and PDF attachment. This is possible with hindi and english language. In addition to this features, the platform also provides the tweet analysis wherein the user can provide the tweet URL and the user is provided with the information of tweet, sentiment and entity report. 
+
+# Tech Stack
+
+## Front-end 
+1. `Framework`: NextJS 
+2. `Styling`: CSS, React-bootstrap
+3. `Deployment`: Vercel
+
+## Back-end 
+1. `Framework`: Spring Boot, Java
+2. `API`: REST API
+3. `Deployment`: AWS EC2
+
+# Setup on local computer
+Clone the repo: `https://github.com/Twelfth-Hour/lit-little-invest-town.git`
+
+## Client-side
+Open a terminal and perform the following steps:
+
+1. Move into the client directory: `cd client`
+2. Change from production ➡️ development environment by moving to config directory and performing following changes:
+
+    ```javascript
+    // server.js
+    const dev = "development";
+    ```
+
+    ```javascript
+    // client.js
+    const dev = "development";
+    ```
+
+3. Open the terminal again within the client directory and include the following commands: 
+    ```bash
+    $ yarn && yarn dev
+    ```
+    OR 
+    ```bash
+    $ npm install && npm run dev
+    ```
+
+4. Client side will be up and running on `http://localhost:3000`
+
+## Server-side
+The server side instructions are provided within the folder `api`.
+
+# UI Interface of Watch Wolf
+
+## Landing Page
+![Landing English](./image/landing/english.png)
+![Landing Hindi](./image/landing/hindi.png)
+
+## Text Analysis
+![Text English](./image/text/text-english.png)
+![Text Report](./image/text/text-report.png)
+
+## Image Analysis
+![Image Report](./image/images/img.png)
+![Image Sentiment Report](./image/images/img_sentiment.png)
+![Image Entities Report](./image/images/img_entities.png)
+
+## PDF Analysis
+![PDF](./image/pdf/pdf.png)
+![PDF Sentiment Report](./image/pdf/pdf_sentiment.png)
+![PDF Entities Report](./image/pdf/pdf_entities.png)
+
+## Tweet Analysis [English]
+![Tweet](./image/tweet/english/tweet.png)
+![Tweet Brief](./image/tweet/english/tweet_brief.png)
+![Tweet Sentiment Report](./image/tweet/english/tweet_sentiment.png)
+![Tweet Entities Report](./image/tweet/english/tweet_entities.png)
+
+## Tweet Analysis [Hindi]
+![Tweet](./image/tweet/hindi/tweet_hi.png)
+![Tweet Brief](./image/tweet/hindi/tweet_hi_brief.png)
+![Tweet Sentiment Report](./image/tweet/hindi/tweet_hi_sentiment.png)
+![Tweet Entities Report](./image/tweet/hindi/tweet_hi_entities.png)
+
+# Authors 
+We, the team Twelfth Hour are the author of LIT. Follow us if you find us interesting 💻😄 as we are two big time computer geeks. 
+
+## Aemie Jariwala
+📌 `Github`: https://github.com/AemieJ <br/>
+📌 `LinkedIn`: https://www.linkedin.com/in/aemie-jariwala/ <br/>
+📌 `Blog`: https://dev.to/aemiej <br/>
+📌 `Website`: https://aemiej.netlify.app/ <br/>
+
+## Sahil Bondre
+📌 `Github`: https://github.com/godcrampy <br/>
+📌 `LinkedIn`: https://www.linkedin.com/in/sahil-bondre/ <br/>
+📌 `Blog`: https://dev.to/godcrampy <br/>
+📌 `Website`: https://sahil.surge.sh/ <br/>
+📌 `Twitter`: https://twitter.com/godcrampy <br/>
