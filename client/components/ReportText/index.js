@@ -13,8 +13,9 @@ export default function ReportText({ locale, result }) {
     const jsonRes = JSON.parse(result)
     const positive = (Math.round(jsonRes.sentiment.positiveScore * 1000) / 1000).toFixed(3);
     const negative = (Math.round(jsonRes.sentiment.negativeScore * 1000) / 1000).toFixed(3);
-    const neutral = (Math.round(jsonRes.sentiment.neutralScore * 1000) / 1000).toFixed(3);
+    let neutral = (Math.round(jsonRes.sentiment.neutralScore * 1000) / 1000).toFixed(3);
     const mixed = (Math.round(jsonRes.sentiment.mixedScore * 1000) / 1000).toFixed(3);
+    neutral = Number(neutral) + Number(mixed);
 
     const lists = jsonRes.entities
 
@@ -113,7 +114,7 @@ export default function ReportText({ locale, result }) {
                     locale === "hi-HI" ? "तटस्थ स्कोर" : "Neutral Score" 
                     }</p>
                 </div>
-                <div className={styles.report_circular} style={{ width: 200, height: 200 }}>
+                {/* <div className={styles.report_circular} style={{ width: 200, height: 200 }}>
                     <div><CircularProgressbarWithChildren
                         value={mixed * 100}
                         text={`${mixed}`}
@@ -136,7 +137,7 @@ export default function ReportText({ locale, result }) {
                     <p className={styles.report_text}>{
                     locale === "hi-HI" ? "मिश्रित स्कोर" : "Mixed Score"
                     }</p>
-                </div>
+                </div> */}
             </div>
 
             <h1 className={styles.title}>

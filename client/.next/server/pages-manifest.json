@@ -3,5 +3,6 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/": "pages/index.js",
-  "/text": "pages/text.js"
+  "/api/generateTweet": "pages/api/generateTweet.js",
+  "/tweet": "pages/tweet.js"
 }

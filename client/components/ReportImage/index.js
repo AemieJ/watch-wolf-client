@@ -15,7 +15,7 @@ export default function ReportImage({ locale, result }) {
     const negative = (Math.round(jsonRes.sentiment.negativeScore * 1000) / 1000).toFixed(3);
     let neutral = (Math.round(jsonRes.sentiment.neutralScore * 1000) / 1000).toFixed(3);
     const mixed = (Math.round(jsonRes.sentiment.mixedScore * 1000) / 1000).toFixed(3);
-    neutral = neutral + mixed;
+    neutral = Number(neutral) + Number(mixed);
 
     const lists = jsonRes.entities
 

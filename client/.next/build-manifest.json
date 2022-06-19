@@ -30,10 +30,15 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/text": [
+    "/pdf": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/text.js"
+      "static/chunks/pages/pdf.js"
+    ],
+    "/tweet": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/tweet.js"
     ]
   },
   "ampFirstPages": []
