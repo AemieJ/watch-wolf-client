@@ -1,8 +1,8 @@
-import styleHome from "../../../styles/Home.module.css"
+import styleHome from "../../styles/Home.module.css"
 
 function HomeCard ( props ) {
     const {homeCard} = props; 
-    const {link, title, description} = homeCard;
+    const {title, description, link} = homeCard;
 
     return (
     <>

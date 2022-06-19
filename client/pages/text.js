@@ -4,10 +4,10 @@ import Link from "next/link"
 
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
-import LoginCard from "./components/LoginCard"
-import TextCard from "./components/TextCard"
+import LoginCard from "../components/LoginCard"
+import TextCard from "../components/TextCard"
 
-export default function Text() {
+export default function Text(props) {
     const { locale, locales, asPath } = useRouter()
     const [isAuth, setAuth] = useState(true)
 
@@ -30,7 +30,7 @@ export default function Text() {
 export async function getStaticProps(context) {
     return {
         props: {
-            context,
+            context
         },
     };
 }

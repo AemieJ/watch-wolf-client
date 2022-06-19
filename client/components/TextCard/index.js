@@ -9,8 +9,7 @@ import ReportText from '../ReportText'
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { client } from "../../../config/client";
-
+import { client } from '../../config/client';
 
 export default function ServiceCard({ locale }) {
     const home = locale === "hi-HI" ? `/hi-HI` : `/`;

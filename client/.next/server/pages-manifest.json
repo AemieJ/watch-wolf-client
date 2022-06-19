@@ -1,6 +1,20 @@
 {
+  "/api/generateImage": "pages/api/generateImage.js",
+  "/api/generatePDF": "pages/api/generatePDF.js",
+  "/api/generateText": "pages/api/generateText.js",
   "/_app": "pages/_app.js",
-  "/_document": "pages/_document.js",
+  "/api/generateTweet": "pages/api/generateTweet.js",
   "/_error": "pages/_error.js",
-  "/api/generateImage": "pages/api/generateImage.js"
+  "/api/login": "pages/api/login.js",
+  "/image": "pages/image.js",
+  "/pdf": "pages/pdf.js",
+  "/text": "pages/text.js",
+  "/api/logout": "pages/api/logout.js",
+  "/tweet": "pages/tweet.js",
+  "/": "pages/index.js",
+  "/_document": "pages/_document.js",
+  "/en-US/404": "pages/en-US/404.html",
+  "/hi-HI/404": "pages/hi-HI/404.html",
+  "/en-US/500": "pages/en-US/500.html",
+  "/hi-HI/500": "pages/hi-HI/500.html"
 }

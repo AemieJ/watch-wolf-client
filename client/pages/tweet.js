@@ -4,10 +4,10 @@ import Link from "next/link"
 
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
-import LoginCard from "./components/LoginCard"
-import TweetCard from "./components/TweetCard"
+import LoginCard from "../components/LoginCard"
+import TweetCard from "../components/TweetCard"
 
-export default function Text() {
+export default function Text(props) {
     const { locale, locales, asPath } = useRouter()
     const [isAuth, setAuth] = useState(true)
 

@@ -4,10 +4,10 @@ import Link from "next/link"
 
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
-import LoginCard from "./components/LoginCard"
-import PDFCard from "./components/PDFCard"
+import LoginCard from "../components/LoginCard"
+import PDFCard from "../components/PDFCard"
 
-export default function PDF() {
+export default function PDF(props) {
     const { locale, locales, asPath } = useRouter()
     const [isAuth, setAuth] = useState(true)
 
@@ -30,7 +30,7 @@ export default function PDF() {
 export async function getStaticProps(context) {
     return {
         props: {
-            context,
+            context
         },
     };
 }

@@ -4,10 +4,10 @@ import Link from "next/link"
 
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
-import LoginCard from "./components/LoginCard"
-import ImageCard from "./components/ImageCard"
+import LoginCard from "../components/LoginCard"
+import ImageCard from "../components/ImageCard"
 
-export default function Images() {
+export default function Images(props) {
     const { locale, locales, asPath } = useRouter()
     const [isAuth, setAuth] = useState(true)
 
@@ -30,7 +30,7 @@ export default function Images() {
 export async function getStaticProps(context) {
     return {
         props: {
-            context,
+            context
         },
     };
 }

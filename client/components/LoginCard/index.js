@@ -5,7 +5,7 @@ import { Form, Button, Navbar, Nav, Container } from "react-bootstrap"
 import { useState } from "react"
 
 import styles from "./Login.module.css"
-import { client } from "../../../config/client"
+import { client } from '../../config/client';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 

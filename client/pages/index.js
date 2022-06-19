@@ -5,9 +5,9 @@ import Link from "next/link"
 import { useRouter } from "next/router"
 import styles from '../styles/Home.module.css'
 import homePosts from "./assets/home.json"
-import HomeCard from "./components/HomeCard"
+import HomeCard from "../components/HomeCard"
 
-export default function Home() {
+export default function Home(props) {
   const { locale, locales, asPath } = useRouter()
 
   return (
@@ -88,7 +88,7 @@ export default function Home() {
 export async function getStaticProps(context) {
   return {
     props: {
-      context,
+      context
     },
   };
 }
