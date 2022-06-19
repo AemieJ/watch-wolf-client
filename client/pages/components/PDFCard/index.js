@@ -54,47 +54,30 @@ export default function ServiceCard({ locale }) {
                     autoClose: 10000
                 });
         } else {
-            
-            // let body = new FormData()
-            // body.append("file", file);
-            // const res = await fetch(`${client}/api/generatePDF`, {
-            //     method: "POST", 
-            //     headers: {
-            //         "Content-Type": "multipart/form-data"
-            //     },
-            //     body: JSON.stringify({
-            //         "base64": localStorage.getItem("encode"),
-            //         "formData": body
-            //     })
-            // })
+            let body = new FormData()
+            body.append("file", file);
+            console.log(file)
+            const res = await fetch(`${client}/api/generatePDF`, {
+                method: "POST",
+                body
+            })
 
-            // const { data, err } = await res.json()
-
+            const { data, err } = await res.json()
             let result = "";
-            let jsonRes = {
-                "languageCode": "en",
-                "sentiment": {
-                    "positiveScore": 0.20946373045444489,
-                    "negativeScore": 6.742851692251861E-4,
-                    "neutralScore": 0.7898232340812683,
-                    "mixedScore": 3.8793106796219945E-5
-                },
-                "entities": [
-                    {
-                        "text": "Deutsche Bank of India",
-                        "type": "ORGANIZATION",
-                        "score": 0.9490169286727905
-                    },
-                    {
-                        "text": "summer of 2022",
-                        "type": "DATE",
-                        "score": 0.8828208446502686
-                    }
-                ]
+            if (err) {
+                toast(err, {
+                    closeOnClick: true,
+                    autoClose: 10000
+                });
+            } else {
+                let res1 = JSON.parse(data)
+                console.log(res1['status'])
+                if (res1['status'] === undefined) {
+                    console.log(res1)
+                    result = data;
+                    setResult(result);
+                }
             }
-
-            result = JSON.stringify(jsonRes);
-            setResult(result);
         }
     }
 

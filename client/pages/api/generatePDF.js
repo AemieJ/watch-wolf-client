@@ -1,33 +1,57 @@
-import { server } from "../../config/server.js"
+import { server } from "../../config/server"
+import { IncomingForm } from 'formidable'
+import { promises as fs } from 'fs';
+import fsAxios from "fs"
+import axios from "axios"
 import FormData from "form-data"
-import fs from 'fs';
 
-
-export default async (req, res) => {
-    let body = JSON.parse(req.body)
-    let base64 = body.base64;
-    let formData = body.formData;
-
-    let requestOptions = {
-        method: 'POST',
-        headers: {
-            "Authorization": `Basic ${base64}`,
-            "Content-Type": "multipart/form-data"
-        },
-        body: formData,
-        redirect: 'follow'
-      };
-
-    console.log(requestOptions)
-
-    try {
-        let response = await fetch(`${server}/api/examine/pdf`, requestOptions); 
-        let data = await response.json();
-        console.log(data)
-        res.status(200).json({ data: JSON.stringify(data), err: null });
-    } catch (err) {
-        res.status(500).json({ data: null, err: 'Generation unsuccessful'})
+export const config = {
+    api: {
+        bodyParser: false
     }
+};
+
+const asyncParse = async (req) => {
+    const data = await new Promise((resolve, reject) => {
+        const form = new IncomingForm();
+        form.parse(req, function (err, fields, files) {
+            if (err) reject({ err });
+            resolve({ fields, files });
+        });
+    });
+    return JSON.stringify(data);
+}
 
 
+export default async function handler(req, res) {
+    console.log("Receiving");
+
+    const response = await asyncParse(req);
+    const data = JSON.parse(response)
+    console.log(data)
+    let f = data.files.file
+    console.log(f)
+    try {
+        let url = `${server}/api/examine/pdf`
+        console.log(f.filepath)
+        let formData = new FormData();
+        formData.append('file', fsAxios.createReadStream(f.filepath));
+        
+        let config = {
+            method: 'post',
+            url: url,
+            headers: { 
+              'Authorization': 'Basic ZGVsdGE6Y3lMdEVIVG53V3czV3ZwaEpWVlQ=', 
+              ...formData.getHeaders()
+            },
+            data : formData
+          };
+
+        const responseFinal = await axios(config);
+        console.log(responseFinal)
+        const dataFinal = responseFinal.data;
+        res.status(200).json({ data: JSON.stringify(dataFinal), err: null })
+    } catch (err) {
+        res.status(200).json({ data: null, err: "Generation unsuccessful" })
+    }
 }
