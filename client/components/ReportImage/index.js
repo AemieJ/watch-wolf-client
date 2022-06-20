@@ -16,11 +16,38 @@ export default function ReportImage({ locale, result }) {
     let neutral = (Math.round(jsonRes.sentiment.neutralScore * 1000) / 1000).toFixed(3);
     const mixed = (Math.round(jsonRes.sentiment.mixedScore * 1000) / 1000).toFixed(3);
     neutral = Number(neutral) + Number(mixed);
-
+    neutral = neutral.toFixed(3);
     const lists = jsonRes.entities
 
     return (
         <main className={styles.main}>
+            <h1 className={styles.title}>
+                {
+                    locale === "hi-HI" ? "छवि का पाठ डिकोड" : "Text Decode of Image"
+                }
+            </h1>
+            <p className={styles.description}>
+                <i>
+                    {
+                        locale === "hi-HI" ? <>
+                            यह रिपोर्ट छवि के बारे में एक संक्षिप्त जानकारी प्रदान करेगी।
+                            <br />इसके आधार पर सेंटीमेंट और एंटिटीज रिपोर्ट दी जाती है।
+                            </> :
+                            <>This report will provide a brief about the image. <br /> 
+                            Based on this, the sentiment and entities report is given.</>
+                    }
+                </i>
+            </p>
+             <div className={styles.img_details}>
+                <Card className={styles.img_card}>
+                    <Card.Img variant="top" src="/gallery.png" className={styles.img_img}/>
+                    <Card.Body>
+                        <Card.Text>
+                            <b>{locale === "hi-HI" ? "मूलपाठ" : "Text"}: </b> {jsonRes.decodedText}
+                        </Card.Text>
+                    </Card.Body>
+                </Card>
+            </div>
             <h1 className={styles.title}>
                 {
                     locale === "hi-HI" ? "भावना रिपोर्" : "Sentiment Report"

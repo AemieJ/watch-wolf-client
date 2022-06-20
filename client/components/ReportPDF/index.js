@@ -16,7 +16,7 @@ export default function ReportPDF({ locale, result }) {
     let neutral = (Math.round(jsonRes.sentiment.neutralScore * 1000) / 1000).toFixed(3);
     const mixed = (Math.round(jsonRes.sentiment.mixedScore * 1000) / 1000).toFixed(3);
     neutral = Number(neutral) + Number(mixed);
-
+    neutral = neutral.toFixed(3);
     const lists = jsonRes.entities
 
     return (

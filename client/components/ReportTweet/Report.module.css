@@ -80,6 +80,27 @@
 }
 
 @media (max-width: 928px) {
+    .tweet_details {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .tweet_card {
+        flex-direction: column !important;
+    }
+
+    .tweet_img {
+        width: 30%;
+    }
+}
+
+@media (max-width: 558px) {
+    .tweet_img {
+        width: 50%;
+    }
+}
+
+@media (max-width: 928px) {
     .report_circular {
         margin-bottom: 4rem;
     }
