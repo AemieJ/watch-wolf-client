@@ -33,7 +33,7 @@ export default function LoginCard({ locale, service }) {
 
         const {data, err} = await res.json();
         
-        if (data === null) flag = 0;
+        if (data === null || data.length === 0) flag = 0;
         if (flag) {
             localStorage.setItem("auth", 1);
             localStorage.setItem("encode", base64);
