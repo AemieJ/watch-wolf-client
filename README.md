@@ -29,7 +29,7 @@ for the text, images and PDF attachment. This is possible with hindi and english
 3. `Deployment`: AWS EC2
 
 # Setup on local computer
-Clone the repo: `https://github.com/Twelfth-Hour/lit-little-invest-town.git`
+Clone this particular repo
 
 ## Client-side
 Open a terminal and perform the following steps:
