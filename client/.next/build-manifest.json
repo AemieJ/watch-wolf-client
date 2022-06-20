@@ -30,11 +30,6 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/text": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/text.js"
-    ],
     "/tweet": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
