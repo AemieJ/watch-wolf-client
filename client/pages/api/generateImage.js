@@ -30,10 +30,11 @@ export default async function handler(req, res) {
     const data = JSON.parse(response)
     console.log(data)
     let f = data.files.file
+    let base64 = data.fields.encode
     console.log(f)
+
     try {
         let url = `${server}/api/examine/image`
-        console.log(f.filepath)
         let formData = new FormData();
         formData.append('file', fsAxios.createReadStream(f.filepath));
         
@@ -41,7 +42,7 @@ export default async function handler(req, res) {
             method: 'post',
             url: url,
             headers: { 
-              'Authorization': 'Basic ZGVsdGE6Y3lMdEVIVG53V3czV3ZwaEpWVlQ=', 
+              'Authorization': `Basic ${base64}`, 
               ...formData.getHeaders()
             },
             data : formData

@@ -30,7 +30,8 @@ export default async function handler(req, res) {
     const data = JSON.parse(response)
     console.log(data)
     let f = data.files.file
-    console.log(f)
+    let base64 = data.fields.encode
+
     try {
         let url = `${server}/api/examine/pdf`
         console.log(f.filepath)
@@ -41,14 +42,13 @@ export default async function handler(req, res) {
             method: 'post',
             url: url,
             headers: { 
-              'Authorization': 'Basic ZGVsdGE6Y3lMdEVIVG53V3czV3ZwaEpWVlQ=', 
+              'Authorization': `Basic ${base64}`, 
               ...formData.getHeaders()
             },
             data : formData
           };
 
         const responseFinal = await axios(config);
-        console.log(responseFinal)
         const dataFinal = responseFinal.data;
         res.status(200).json({ data: JSON.stringify(dataFinal), err: null })
     } catch (err) {

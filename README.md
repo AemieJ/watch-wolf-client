@@ -20,11 +20,12 @@ for the text, images and PDF attachment. This is possible with hindi and english
 ## Front-end 
 1. `Framework`: NextJS 
 2. `Styling`: CSS, React-bootstrap
+3. `API`: Fetch, Axios
 3. `Deployment`: Vercel
 
 ## Back-end 
 1. `Framework`: Spring Boot, Java
-2. `API`: REST API
+2. `API`: AWS (Comprehend, Rekognition), Twitter API, JUnit, Apache PDFBox
 3. `Deployment`: AWS EC2
 
 # Setup on local computer

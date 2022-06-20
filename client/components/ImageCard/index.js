@@ -45,6 +45,7 @@ export default function ServiceCard({ locale }) {
         } else {
             let body = new FormData()
             body.append("file", file);
+            body.append("encode", localStorage.getItem("encode"))
             console.log(file)
             const res = await fetch(`${client}/api/generateImage`, {
                 method: "POST",

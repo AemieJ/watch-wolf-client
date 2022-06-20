@@ -2,6 +2,9 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/api/generatePDF": "pages/api/generatePDF.js",
-  "/": "pages/index.js"
+  "/api/login": "pages/api/login.js",
+  "/text": "pages/text.js",
+  "/": "pages/index.js",
+  "/tweet": "pages/tweet.js",
+  "/api/generateTweet": "pages/api/generateTweet.js"
 }
