@@ -1,4 +1,4 @@
-const dev = "development"
+const dev = "production"
 
 export const client =
   dev == "development"
