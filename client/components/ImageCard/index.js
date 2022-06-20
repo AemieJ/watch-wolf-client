@@ -132,7 +132,7 @@ export default function ServiceCard({ locale }) {
                     </i>
                 </p>
                 <input type="file" className={"form-control"} id="customFile"
-                    accept="image/gif, image/jpeg, image/png"
+                    accept="image/gif, image/jpeg, image/png, image/jpg"
                     onChange={uploadToClient}
                     disabled={clicked}
                 />
