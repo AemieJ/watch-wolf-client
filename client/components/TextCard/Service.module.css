@@ -77,6 +77,16 @@
   padding: 0.5rem 5rem;
 }
 
+.mail,
+.mail:hover,
+.mail:active,
+.mail:focus {
+  background-color: #CC5500;
+  color: #fff;
+  margin-left: 1rem;
+  border-radius: 5px;
+}
+
 .clear,
 .clear:hover,
 .clear:active,

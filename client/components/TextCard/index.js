@@ -10,15 +10,24 @@ import ReportText from '../ReportText'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { client } from '../../config/client';
+import { getMailLink } from "../mailTo";
 
 export default function ServiceCard({ locale }) {
     const home = locale === "hi-HI" ? `/hi-HI` : `/`;
     const [result, setResult] = useState("")
+    const [resultParse, setResultParse] = useState(null)
     const [clicked, setClicked] = useState(false)
     const [text, setText] = useState("");
 
-    
-    const generateReport = async(e) => {
+    const RESPONSE_TYPE = {
+        TEXT: "Text",
+        PDF: "PDF",
+        IMAGE: "Image",
+        TWEET: "Tweet"
+    }
+
+
+    const generateReport = async (e) => {
         e.preventDefault();
         setClicked(true)
         // TODO: required to integrate with backend 
@@ -35,7 +44,7 @@ export default function ServiceCard({ locale }) {
                 });
         } else {
             const res = await fetch(`${client}/api/generateText`, {
-                method: "POST", 
+                method: "POST",
                 body: JSON.stringify({
                     "base64": localStorage.getItem("encode"),
                     "text": text
@@ -56,11 +65,12 @@ export default function ServiceCard({ locale }) {
                     console.log(res1)
                     result = data;
                     setResult(result);
+                    setResultParse(res1)
                 }
-                
+
             }
 
-            
+
         }
     }
 
@@ -69,9 +79,9 @@ export default function ServiceCard({ locale }) {
 
         const res = await fetch(`${client}/api/logout`, {
             method: "GET"
-        }); 
+        });
 
-        const { data, err } = await res.json(); 
+        const { data, err } = await res.json();
         if (data !== null) {
             localStorage.setItem("auth", 0);
             localStorage.setItem("encode", "");
@@ -89,18 +99,18 @@ export default function ServiceCard({ locale }) {
         <div suppressHydrationWarning className={styles.container}>
             <Navbar bg="light" expand="lg" className={styles.nav}>
                 <Container>
-                        <Nav className="me-auto">
-                            <Nav.Link href={home} className={styles.nav_link}> {
-                                locale === "hi-HI" ? "होमपेज" : "Homepage"
+                    <Nav className="me-auto">
+                        <Nav.Link href={home} className={styles.nav_link}> {
+                            locale === "hi-HI" ? "होमपेज" : "Homepage"
+                        }</Nav.Link>
+                    </Nav>
+                    <Nav className="mr-auto">
+                        <Nav.Link href={home} className={`${styles.nav_link} ${styles.nav_btn}`}
+                            onClick={logout}
+                        > {
+                                locale === "hi-HI" ? "लॉग आउट" : "Logout"
                             }</Nav.Link>
-                        </Nav>
-                        <Nav className="mr-auto">
-                            <Nav.Link href={home} className={`${styles.nav_link} ${styles.nav_btn}`}
-                                onClick={logout}
-                            > {
-                                    locale === "hi-HI" ? "लॉग आउट" : "Logout"
-                                }</Nav.Link>
-                        </Nav>
+                    </Nav>
                 </Container>
             </Navbar>
             <main className={styles.main}>
@@ -153,15 +163,31 @@ export default function ServiceCard({ locale }) {
                     >
                         {locale === "hi-HI" ? "रिपोर्ट साफ़ करें" : "Clear Report"}
                     </Button>
+                    {
+                        result.length !== 0 ? <a variant="primary"
+                        type="submit"
+                        className={`${styles.submit} ${styles.mail}`}
+                        href={getMailLink(
+                            RESPONSE_TYPE.TEXT,
+                            text,
+                            [resultParse.sentiment.positiveScore, resultParse.sentiment.negativeScore, Number(resultParse.sentiment.neutralScore) + Number(resultParse.sentiment.mixedScore)],
+                            resultParse.languageCode,
+                            resultParse.entities
+                        )}
+                    >
+                        {locale === "hi-HI" ? "मेल रिपोर्ट" : "Mail Report"}
+                    </a> : <></>
+                    }
+                    
                 </div>
 
                 {
                     result.length === 0 ?
-                    (clicked ? <div>
-                        <img src="/loader.gif" alt="loader" className={styles.loader}/>
-                    </div>: <></>
-                    ) : 
-                    <ReportText locale={locale} result={result} />
+                        (clicked ? <div>
+                            <img src="/loader.gif" alt="loader" className={styles.loader} />
+                        </div> : <></>
+                        ) :
+                        <ReportText locale={locale} result={result} />
                 }
             </main>
 
