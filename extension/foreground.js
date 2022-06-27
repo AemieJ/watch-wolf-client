@@ -79,18 +79,21 @@ const addToDOM = (jsonRes, tweet, tweetID) => {
         let links = el.querySelectorAll("a");
         links.forEach((elm) => {
             if (elm.href === tweet) {
-                let parent = elm.parentElement
+                let parent = elm.parentElement.parentElement.parentElement;
                 let divElement = document.createElement("div"); 
                 divElement.id = tweetID;
 
-                divElement.innerText = `😄 ${positive * 100}% 😔 ${negative * 100}% 😐 ${neutral * 100}%`;
+                divElement.innerText = `😄 ${(positive * 100).toFixed(2)}% 😔 ${(negative * 100).toFixed(2)}% 😐 ${(neutral * 100).toFixed(2)}%`;
                 divElement.style.background = "#fff";
                 divElement.style.border = "1px solid aqua";
-                divElement.style.marginLeft = "0.4rem";
+                divElement.style.marginBottom = "1rem";
+                divElement.style.marginTop = "0.4rem";
                 divElement.style.fontSize = "0.85rem";
                 divElement.style.borderRadius = "10px";
                 divElement.style.padding = "0rem 0.3rem";
                 divElement.style.fontFamily = "sans-serif";
+                divElement.style.width = "38%";
+                divElement.style.textAlign = "center";
 
                 if (positive > negative && positive > neutral) {
                     divElement.style.background = "#50C878";
