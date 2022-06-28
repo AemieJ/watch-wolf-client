@@ -10,12 +10,22 @@ import ReportTweet from '../ReportTweet'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { client } from '../../config/client';
+import { getMailLink } from "../mailTo";
 
 export default function ServiceCard({ locale }) {
     const home = locale === "hi-HI" ? `/hi-HI` : `/`;
     const [result, setResult] = useState("")
+    const [resultParse, setResultParse] = useState(null)
+    const [tweetContent, setTweetContent] = useState("")
     const [clicked, setClicked] = useState(false)
     const [text, setText] = useState("")
+
+    const RESPONSE_TYPE = {
+        TEXT: "Text",
+        PDF: "PDF",
+        IMAGE: "Image",
+        TWEET: "Tweet"
+    }
 
     const generateReport = async(e) => {
         e.preventDefault()
@@ -63,6 +73,16 @@ export default function ServiceCard({ locale }) {
                         console.log(res1)
                         result = data;
                         setResult(result);
+                        setResultParse(res1);
+
+                        let content = `
+                        ID: ${res1.tweet.id}
+                        Text: ${res1.tweet.text}
+                        Username: @${res1.tweet.username}
+                        User screen name: ${res1.tweet.userScreenName}
+                        `
+
+                        setTweetContent(content)
                     }
                     
                 }
@@ -156,7 +176,7 @@ export default function ServiceCard({ locale }) {
                     />
                 </InputGroup>
                 <br />
-                <div>
+                <div className={styles.submit_btn_grp}>
                     <Button variant="primary"
                         type="submit"
                         className={styles.submit}
@@ -175,6 +195,21 @@ export default function ServiceCard({ locale }) {
                     >
                         {locale === "hi-HI" ? "रिपोर्ट साफ़ करें" : "Clear Report"}
                     </Button>
+                    {
+                        result.length !== 0 ? <a variant="primary"
+                        type="submit"
+                        className={`${styles.submit} ${styles.mail}`}
+                        href={getMailLink(
+                            RESPONSE_TYPE.TWEET,
+                            tweetContent,
+                            [resultParse.sentiment.positiveScore, resultParse.sentiment.negativeScore, Number(resultParse.sentiment.neutralScore) + Number(resultParse.sentiment.mixedScore)],
+                            resultParse.languageCode,
+                            resultParse.entities
+                        )}
+                    >
+                        {locale === "hi-HI" ? "मेल रिपोर्ट" : "Mail Report"}
+                    </a> : <></>
+                    }
                 </div>
 
                 {

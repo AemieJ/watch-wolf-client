@@ -144,7 +144,7 @@ export default function ServiceCard({ locale }) {
                     </Form.Group>
                 </Form>
                 <br />
-                <div>
+                <div className={styles.submit_btn_grp}>
                     <Button variant="primary"
                         type="submit"
                         className={styles.submit}

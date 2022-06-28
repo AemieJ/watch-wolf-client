@@ -81,7 +81,7 @@
 .mail:hover,
 .mail:active,
 .mail:focus {
-  background-color: #CC5500;
+  background-color: #cc5500;
   color: #fff;
   margin-left: 1rem;
   border-radius: 5px;
@@ -117,6 +117,30 @@
   color: #000 !important;
   align-items: center;
   flex-grow: 1;
+}
+
+@media (max-width: 871px) {
+  .submit_btn_grp {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .mail,
+  .clear {
+    margin-left: 0;
+    margin-top: 1rem;
+  }
+
+  .mail:hover,
+  .mail:active,
+  .mail:focus,
+  .clear:hover,
+  .clear:active,
+  .clear:focus {
+    margin-left: 0;
+    margin-top: 1rem;
+  }
 }
 
 @media (max-width: 693px) {
