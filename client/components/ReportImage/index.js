@@ -50,7 +50,7 @@ export default function ReportImage({ locale, result }) {
             </div>
             <h1 className={styles.title}>
                 {
-                    locale === "hi-HI" ? "भावना रिपोर्" : "Sentiment Report"
+                    locale === "hi-HI" ? "भावना रिपोर्ट" : "Sentiment Report"
                 }
             </h1>
             <p className={styles.description}>
