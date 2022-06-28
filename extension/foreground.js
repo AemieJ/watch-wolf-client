@@ -1,3 +1,63 @@
+// MailTo Code
+
+const RESPONSE_TYPE = {
+    TEXT: "Text",
+    PDF: "PDF",
+    IMAGE: "Image",
+    TWEET: "Tweet"
+}
+
+const OFFICER_NAME = "Officer Rakesh Shukla"
+const RECEIVER_EMAIL = "bginger436@gmail.com"
+
+function _toTitleCase(str) {
+    return str.split(' ')
+        .map(w => w[0].toUpperCase() + w.substring(1).toLowerCase())
+        .join(' ');
+}
+
+function _toPercent(num) {
+    return (100 * num).toFixed(1) + "%";
+}
+
+function _entitiesString(entities) {
+    let str = ''
+    for (const index in entities) {
+        const entity = entities[index]
+        const position = Number(index) + 1
+        str += `
+  ${position}: "${entity.text}"
+        ${_toTitleCase(entity.type)}: ${_toPercent(entity.score)}
+        `
+    }
+
+    return str;
+}
+
+function getMailLink(responseType, content, score, language, entities) {
+    let link = `mailto:${RECEIVER_EMAIL}?subject=${responseType} Analysis Report: ${OFFICER_NAME} - ${Date().toString()}`
+
+    // Body
+    link +=
+        `&body=Content:
+  ${content}
+  
+  Sentiment Score:
+    Positive: ${_toPercent(score[0])}%
+    Negative: ${_toPercent(score[1])}%
+    Neutral: ${_toPercent(score[2])}%
+  
+  Language: ${language === "en" ? "English" : "Hindi"}
+  
+  Entities Detected:
+  ${_entitiesString(entities)}
+  `
+
+    return encodeURI(link);
+}
+
+// Main code
+
 let historyLinks = null;
 let server = "https://13.233.148.83";
 let responseData = null;
@@ -38,14 +98,14 @@ const sendLinks = (twitterLinks) => {
                     , url: "http://13.233.148.83/api/examine/twitter"
                 }, function (response) {
                     if (response != undefined && response != "" && response.status !== 500) {
-                        if (document.getElementById(tweetID) === null || document.getElementById(tweetID) === undefined) {
+                        if (document.getElementById(`main_ext_${tweetID}`) === null || document.getElementById(`main_ext_${tweetID}`) === undefined) {
                             addToDOM(response, tweet, tweetID);
                         } else {
-                            document.getElementById(tweetID).remove();
+                            document.getElementById(`main_ext_${tweetID}`).remove();
                             addToDOM(response, tweet, tweetID);
                         }
-                        
-                    } 
+
+                    }
                 });
 
 
@@ -54,7 +114,7 @@ const sendLinks = (twitterLinks) => {
 }
 
 const setsAreEqual = (a, b) => {
-    if (a === null || b === null) return false; 
+    if (a === null || b === null) return false;
 
     if (a.size !== b.size) {
         return false;
@@ -73,14 +133,35 @@ const addToDOM = (jsonRes, tweet, tweetID) => {
     neutral = Number(neutral) + Number(mixed);
     neutral = neutral.toFixed(2);
 
-    console.log(positive, negative, neutral)
+    let content = `
+    ID: ${jsonRes.tweet.id}
+    Text: ${jsonRes.tweet.text}
+    Username: @${jsonRes.tweet.username}
+    User screen name: ${jsonRes.tweet.userScreenName}
+    `
+
+    let mailLink = getMailLink(
+        RESPONSE_TYPE.TWEET,
+        content,
+        [positive, negative, neutral], 
+        jsonRes.languageCode,
+        jsonRes.entities
+    )
+
+    console.log(mailLink)
     let articles = document.querySelectorAll("article[data-testid=tweet]");
     articles.forEach((el) => {
         let links = el.querySelectorAll("a");
         links.forEach((elm) => {
             if (elm.href === tweet) {
                 let parent = elm.parentElement.parentElement.parentElement;
-                let divElement = document.createElement("div"); 
+                let divMainElm = document.createElement("div");
+                divMainElm.id = `main_ext_${tweetID}`;
+                divMainElm.style.display = "flex";
+                divMainElm.style.alignItems = "center";
+                parent.appendChild(divMainElm);
+
+                let divElement = document.createElement("div");
                 divElement.id = tweetID;
 
                 divElement.innerText = `😄 ${(positive * 100).toFixed(2)}% 😔 ${(negative * 100).toFixed(2)}% 😐 ${(neutral * 100).toFixed(2)}%`;
@@ -98,14 +179,30 @@ const addToDOM = (jsonRes, tweet, tweetID) => {
                 if (positive > negative && positive > neutral) {
                     divElement.style.background = "#50C878";
                     divElement.style.border = "1px solid #008000";
-                } 
+                }
 
                 if (negative > positive && negative > neutral) {
                     divElement.style.background = "#FF5C5C";
                     divElement.style.border = "1px solid #8B0000";
                 }
 
-                parent.appendChild(divElement);
+                let mainElm = document.getElementById(`main_ext_${tweetID}`);
+                mainElm.appendChild(divElement)
+
+                let linkElm = document.createElement("a");
+                linkElm.href = mailLink;
+                linkElm.innerText = "Mail Report";
+                linkElm.style.background = "#fff";
+                linkElm.style.marginBottom = "1rem";
+                linkElm.style.marginTop = "0.4rem";
+                linkElm.style.fontSize = "0.85rem";
+                linkElm.style.borderRadius = "10px";
+                linkElm.style.padding = "0.2rem 0.5rem";
+                linkElm.style.fontFamily = "sans-serif";
+                linkElm.style.textAlign = "center";
+                linkElm.style.marginLeft = "0.6rem";
+                linkElm.style.textDecoration = "none";
+                mainElm.appendChild(linkElm);
             }
         })
     })

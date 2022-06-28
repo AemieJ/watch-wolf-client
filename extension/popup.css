@@ -1,0 +1,10 @@
+html, body {
+    min-width:450px;
+    border-radius: 10px;
+}
+
+.note {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 0.85rem;
+    
+}
