@@ -211,7 +211,7 @@ const addToDOM = (jsonRes, tweet, tweetID) => {
 let stateCheck = setInterval(() => {
     if (document.querySelectorAll("article[data-testid=tweet]").length !== 0) {
         clearInterval(stateCheck);
-
+        
         if (count === 0) {
             let twitterLinks = new Set();
             let articles = document.querySelectorAll("article[data-testid=tweet]");
