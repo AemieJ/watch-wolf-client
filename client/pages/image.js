@@ -26,6 +26,9 @@ export default function Images(props) {
         <title>Watch Wolf: Image Report</title>
         <meta name="description" content="Watch wolf helps to understand sentiment of text, pdf, images and tweets" />
         <link rel="icon" href="/favicon.ico" />
+        <style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&display=swap');
+</style>
     </Head>
     {isAuth ? (
          <ImageCard locale={locale} />

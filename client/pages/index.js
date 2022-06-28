@@ -16,6 +16,9 @@ export default function Home(props) {
         <title>Watch Wolf</title>
         <meta name="description" content="Watch wolf helps to understand sentiment of text, pdf, images and tweets" />
         <link rel="icon" href="/favicon.ico" />
+        <style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&display=swap');
+</style>
       </Head>
 
       <main className={styles.main}>
@@ -40,30 +43,30 @@ export default function Home(props) {
         </div>
 
         <h1 className={styles.title}>
-        {
-          locale === "hi-HI" ? "वॉच वुल्फ 🐺" : "Watch Wolf 🐺"
-        }
+          {
+            locale === "hi-HI" ? "वॉच वुल्फ 🐺" : "Watch Wolf 🐺"
+          }
         </h1>
 
         <p className={styles.description}>
           <i>
-          {
-          locale === "hi-HI" ? "छवियों और पीडीएफ से पाठ की भावना का विश्लेषण करें हिंदी और अंग्रेजी भाषा" : 
-          "Analyze the sentiment of the text from images and PDF in Hindi and English Language"
-        }
+            {
+              locale === "hi-HI" ? "छवियों और पीडीएफ से पाठ की भावना का विश्लेषण करें हिंदी और अंग्रेजी भाषा" :
+                "Analyze the sentiment of the text from images and PDF in Hindi and English Language"
+            }
           </i>
         </p>
 
         <div className={styles.grid}>
           {
             homePosts.home
-            .filter(p => p.locale == locale)
-            .map((post, i) => {
-              return <HomeCard 
-                key={i}
-                homeCard={post}
-              />
-            })
+              .filter(p => p.locale == locale)
+              .map((post, i) => {
+                return <HomeCard
+                  key={i}
+                  homeCard={post}
+                />
+              })
           }
         </div>
       </main>

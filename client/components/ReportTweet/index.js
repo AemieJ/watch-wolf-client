@@ -183,7 +183,7 @@ export default function ReportTweet({ locale, result }) {
                             यह रिपोर्ट ट्वीट के विश्लेषण को प्रदर्शित करेगी।
                             <br />इस विश्लेषण से आप उस खास ट्वीट के सार को समझ सकते हैं।
                             </> :
-                            <>TThis report will showcase the analysis of the tweet. <br /> With this analysis, you can understand the entities of the particular tweet.</>
+                            <>This report will showcase the analysis of the tweet. <br /> With this analysis, you can understand the entities of the particular tweet.</>
                     }
                 </i>
             </p>
