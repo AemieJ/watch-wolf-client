@@ -34,7 +34,7 @@ export default function Text(props) {
     {isAuth ? (
          <TweetCard locale={locale} />
     ) : (
-        <LoginCard locale={locale} service="text" />
+        <LoginCard locale={locale} service="tweet" />
     )} 
     <footer className={styles.footer}>
         <a

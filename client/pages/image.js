@@ -33,7 +33,7 @@ export default function Images(props) {
     {isAuth ? (
          <ImageCard locale={locale} />
     ) : (
-        <LoginCard locale={locale} service="pdf" />
+        <LoginCard locale={locale} service="image" />
     )}
     <footer className={styles.footer}>
         <a
